@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="value" />
+    <select id="range">
+        <option value="5">5</option>
+        <option value="3">3</option>
+    </select>
+    <select id="positive">
+        <option value="B">B</option>
+        <option value="S">S</option>
+    </select>
+    <button onclick="cal()">Go</button>
+    <p id="sl"></p>
+    <p id="tp"></p>
+    <script>
+        function cal() {
+            let range = parseInt(document.getElementById("range").value);
+            let positive = document.getElementById("positive").value;
+            let value = parseFloat(document.getElementById("value").value);
+            let sl = '';
+            let tp = '';
+            if (range === 5) {
+                if (positive === 'B') {
+                    sl = value - 0.0045;
+                    tp = value + 0.006;
+                } else {
+                    sl = value + 0.0045;
+                    tp = value - 0.006
+                }
+            } else if (range === 3) {
+                if (positive === 'B') {
+                    sl = value - 0.45;
+                    tp = value + 0.6;
+                } else {
+                    sl = value + 0.45;
+                    tp = value - 0.6;
+                }
+            }
+            document.getElementById('sl').innerText = 'SL: ' + sl.toFixed(range);
+            document.getElementById('tp').innerText = 'TP: '+ tp.toFixed(range);
+        }
+    </script>
+</body>
+
+</html>
