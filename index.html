@@ -20,6 +20,19 @@
     <button onclick="cal()">Go</button>
     <p id="sl"></p>
     <p id="tp"></p>
+
+
+    <hr style="margin: 20px 0; width: 100%;" />
+
+
+    <input type="text" placeholder="entry" id="entry"><br />
+    <input type="text" placeholder="SL" id="sl_input"><br />
+    <input type="text" placeholder="TP" id="tp1_input"><br />
+    <input type="text" placeholder="TP" id="tp2_input"><br />
+    <button onclick="pipsCalculation()">Go</button>
+    <p id="sl_output"></p>
+    <p id="tp1_output"></p>
+    <p id="tp2_output"></p>
     <script>
         function cal() {
             let range = parseInt(document.getElementById("range").value);
@@ -45,7 +58,26 @@
                 }
             }
             document.getElementById('sl').innerText = 'SL: ' + sl.toFixed(range);
-            document.getElementById('tp').innerText = 'TP: '+ tp.toFixed(range);
+            document.getElementById('tp').innerText = 'TP: ' + tp.toFixed(range);
+        }
+
+        function pipsCalculation() {
+            let entry = document.getElementById('entry').value;
+            let sl_input = document.getElementById('sl_input').value;
+            let tp1_input = document.getElementById('tp1_input').value;
+            let tp2_input = document.getElementById('tp2_input').value;
+            let sl_output = document.getElementById('sl_output');
+            let tp1_output = document.getElementById('tp1_output');
+            let tp2_output = document.getElementById('tp2_output');
+            if (entry.length - (entry.lastIndexOf('.') + 1) < 4) {
+                sl_output.innerText = 'SL: ' + (parseFloat(entry) - parseFloat(sl_input)).toFixed(3);
+                tp1_output.innerText = 'TP1: ' + (parseFloat(entry) - parseFloat(tp1_input)).toFixed(3);
+                tp2_output.innerText = 'TP2: ' + (parseFloat(entry) - parseFloat(tp2_input)).toFixed(3);
+            } else {
+                sl_output.innerText = 'SL: ' + (parseFloat(entry) - parseFloat(sl_input)).toFixed(5);
+                tp1_output.innerText = 'TP1: ' + (parseFloat(entry) - parseFloat(tp1_input)).toFixed(5);
+                tp2_output.innerText = 'TP2: ' + (parseFloat(entry) - parseFloat(tp2_input)).toFixed(5);
+            }
         }
     </script>
 </body>
